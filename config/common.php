@@ -19,6 +19,10 @@ return [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+                '' => 'main/default/index',
+                'contact' => 'main/contact/index',
+                '<_a:error>' => 'main/default/<_a>',
+                '<_a:(login|logout)>' => 'user/default/<_a>',
                 '<_c:[\w\-]+>/<id:\d+>' => '<_c>/view',
                 '<_c:[\w\-]+>' => '<_c>/index',
                 '<_c:[\w\-]+>/<_a:[\w\-]+>/<id:\d+>' => '<_c>/<_a>',
@@ -32,6 +36,14 @@ return [
         ],
         'log' => [
             'class' => 'yii\log\Dispatcher',
+        ],
+    ],
+    'modules'=>[
+        'main' => [
+            'class' => 'app\modules\main\Module',
+        ],
+        'user' => [
+            'class' => 'app\modules\user\Module',
         ],
     ],
     'params' => $params,
