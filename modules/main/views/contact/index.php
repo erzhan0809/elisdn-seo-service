@@ -8,13 +8,12 @@ use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 use yii\captcha\Captcha;
 
-$this->title = 'Contact';
+$this->title = Yii::t('app','TITLE_CONTACT');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="main-contact-index">
-    <h1><?= Html::encode($this->title) ?></h1>
 
-    <?php if (Yii::$app->session->hasFlash('contactFormSubmitted')): ?>
+    <?php if (Yii::$app->session->hasFlash(Yii::t('app','CONTACT_FORM_SUBMITTED'))): ?>
 
         <div class="alert alert-success">
             Thank you for contacting us. We will respond to you as soon as possible.

@@ -9,6 +9,8 @@ $params = ArrayHelper::merge(
 return [
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
+    'name' => 'KT Cloud Lab',
+    'language' => 'ru',
     'components' => [
         'db' => [
             'class' => 'yii\db\Connection',
@@ -36,6 +38,18 @@ return [
         ],
         'log' => [
             'class' => 'yii\log\Dispatcher',
+        ],
+        'i18n' => [
+            'translations' => [
+                'app' => [
+                    'class' => 'yii\i18n\PhpMessageSource',
+                    'forceTranslation' => true,
+                ],
+                'models' => [
+                    'class' => 'yii\i18n\PhpMessageSource',
+                    'forceTranslation' => true,
+                ],
+            ],
         ],
     ],
     'modules'=>[

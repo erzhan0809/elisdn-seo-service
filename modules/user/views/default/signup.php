@@ -8,11 +8,10 @@ use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 use \yii\captcha\Captcha;
 
-$this->title = 'Signup';
+$this->title = Yii::t('app','TITLE_SIGNUP');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="user-default-signup">
-    <h1><?= Html::encode($this->title) ?></h1>
 
     <p>Please fill out the following fields to signup:</p>
 

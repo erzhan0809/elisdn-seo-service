@@ -83,4 +83,13 @@ class LoginForm extends Model
 
         return $this->_user;
     }
+
+    public function attributeLabels()
+    {
+        return [
+            'username'=>Yii::t('models','LOGIN_FORM_USERNAME'),
+            'password'=>Yii::t('models','LOGIN_FORM_PASSWORD'),
+            'rememberMe'=>Yii::t('models','LOGIN_FORM_REMEMBERME'),
+        ];
+    }
 }
