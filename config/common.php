@@ -23,6 +23,7 @@ return [
             'rules' => [
                 '' => 'main/default/index',
                 'contact' => 'main/contact/index',
+                'user' => 'user/default/index',
                 '<_a:error>' => 'main/default/<_a>',
                 '<_a:(login|logout|signup|email-confirm|request-password-reset|password-reset)>' => 'user/default/<_a>',
                 '<_c:[\w\-]+>/<id:\d+>' => '<_c>/view',
@@ -49,6 +50,10 @@ return [
                     'class' => 'yii\i18n\PhpMessageSource',
                     'forceTranslation' => true,
                 ],
+                'error' => [
+                    'class' => 'yii\i18n\PhpMessageSource',
+                    'forceTranslation' => true,
+                ],
             ],
         ],
     ],
@@ -58,6 +63,9 @@ return [
         ],
         'user' => [
             'class' => 'app\modules\user\Module',
+        ],
+        'admin' => [
+            'class' => 'app\modules\admin\Module',
         ],
     ],
     'params' => $params,

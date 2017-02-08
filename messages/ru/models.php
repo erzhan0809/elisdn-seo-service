@@ -14,4 +14,8 @@ return [
     'LOGIN_FORM_USERNAME'=>'Имя пользователя',
     'LOGIN_FORM_PASSWORD'=>'Пароль',
     'LOGIN_FORM_REMEMBERME'=>'Запомнить меня',
+
+    'USER_NEW_PASSWORD'=>'Новый пароль',
+    'USER_REPEAT_PASSWORD'=>'Повторите новый пароль',
+    'USER_CURRENT_PASSWORD'=>'Текущий пароль',
 ];
