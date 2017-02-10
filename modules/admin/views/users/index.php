@@ -3,6 +3,11 @@
 use yii\helpers\Html;
 use yii\grid\GridView;
 use \app\modules\admin\models\User;
+use app\modules\admin\components\UserStatusColumn;
+use app\modules\admin\components\grid\ActionColumn;
+use \app\components\grid\LinkColumn;
+use \kartik\date\DatePicker;
+
 /* @var $this yii\web\View */
 /* @var $searchModel app\modules\admin\models\UserSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -29,42 +34,35 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
 
             'id',
-            'username',
-            'email:email',
-//            'created_at:datetime',
-//            'updated_at:datetime',
-
-            //'auth_key',
-            // 'email_confirm_token:email',
-            // 'password_hash',
-            // 'password_reset_token',
             [
+                'filter' => DatePicker::widget([
+                    'model' => $searchModel,
+                    'attribute' => 'date_from',
+                    'attribute2' => 'date_to',
+                    'type' => DatePicker::TYPE_RANGE,
+                    'separator' => '-',
+                    'pluginOptions' => ['format' => 'yyyy-mm-dd']
+                ]),
+                'attribute' => 'created_at',
+                'format' => 'datetime',
+            ],
+            [
+                'class' => LinkColumn::className(),
+                'attribute' => 'username',
+            ],
+            'email:email',
+            [
+                'class' => app\components\grid\SetColumn::className(),
                 'filter' => User::getStatusesArray(),
                 'attribute' => 'status',
-                'format' => 'raw',
-                'value' => function ($model, $key, $index, $column) {
-                    /** @var User $model */
-                    /** @var \yii\grid\DataColumn $column */
-                    $value = $model->{$column->attribute};
-                    switch ($value) {
-                        case User::STATUS_ACTIVE:
-                            $class = 'success';
-                            break;
-                        case User::STATUS_WAIT:
-                            $class = 'warning';
-                            break;
-                        case User::STATUS_BLOCKED:
-                        default:
-                            $class = 'default';
-                    };
-                    $html = Html::tag('span', Html::encode($model->getStatusName()), ['class' => 'label label-' . $class]);
-                    return $value === null ? $column->grid->emptyCell : $html;
-                }
+                'name' => 'statusName',
+                'cssCLasses' => [
+                    User::STATUS_ACTIVE => 'success',
+                    User::STATUS_WAIT => 'warning',
+                    User::STATUS_BLOCKED => 'default',
+                ],
             ],
-            [
-                'class' => 'yii\grid\ActionColumn',
-                'contentOptions' => ['style' => 'white-space: nowrap; text-align: center; letter-spacing: 0.1em; max-width: 7em;'],
-            ],
+            ['class' => ActionColumn::className()],
         ],
     ]); ?>
 </div>

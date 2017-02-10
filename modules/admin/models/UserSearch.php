@@ -16,6 +16,8 @@ class UserSearch extends Model
     public $username;
     public $email;
     public $status;
+    public $date_from;
+    public $date_to;
 
 
     /**
@@ -26,6 +28,7 @@ class UserSearch extends Model
         return [
             [['id', 'status'], 'integer'],
             [['username', 'email'], 'safe'],
+            [['date_from', 'date_to'], 'date', 'format' => 'php:Y-m-d'],
         ];
     }
 
@@ -38,6 +41,8 @@ class UserSearch extends Model
             'username' => Yii::t('app', 'USER_USERNAME'),
             'email' => Yii::t('app', 'USER_EMAIL'),
             'status' => Yii::t('app', 'USER_STATUS'),
+            'date_from' => Yii::t('app', 'USER_DATE_FROM'),
+            'date_to' => Yii::t('app', 'USER_DATE_TO'),
         ];
     }
 
@@ -79,6 +84,10 @@ class UserSearch extends Model
 
         $query->andFilterWhere(['ilike', 'username', $this->username])
             ->andFilterWhere(['ilike', 'email', $this->email]);
+
+        $query
+            ->andFilterWhere(['>=', 'created_at', $this->date_from ? strtotime($this->date_from . ' 00:00:00') : null])
+            ->andFilterWhere(['<=', 'created_at', $this->date_to ? strtotime($this->date_to . ' 23:59:59') : null]);
 
         return $dataProvider;
     }
