@@ -9,7 +9,7 @@
 namespace app\modules\user\controllers;
 
 
-use app\modules\user\models\PasswordChangeForm;
+use app\modules\user\forms\PasswordChangeForm;
 use app\modules\user\models\User;
 use yii\filters\AccessControl;
 use yii\web\Controller;
